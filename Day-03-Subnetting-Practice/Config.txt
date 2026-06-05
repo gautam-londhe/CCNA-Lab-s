@@ -1,0 +1,85 @@
+R1
+
+R1#show ip int brief
+Interface              IP-Address      OK? Method Status                Protocol 
+GigabitEthernet0/0     192.168.10.1    YES manual up                    up 
+GigabitEthernet0/1     192.168.10.65   YES manual up                    up 
+GigabitEthernet0/2     unassigned      YES unset  administratively down down 
+Vlan1                  unassigned      YES unset  administratively down down
+
+!
+hostname R1
+!
+!
+interface GigabitEthernet0/0
+ ip address 192.168.10.1 255.255.255.192
+ duplex auto
+ speed auto
+!
+interface GigabitEthernet0/1
+ ip address 192.168.10.65 255.255.255.192
+ duplex auto
+ speed auto
+!
+
+PC1
+
+C:\>ping 192.168.10.1
+
+Pinging 192.168.10.1 with 32 bytes of data:
+
+Reply from 192.168.10.1: bytes=32 time<1ms TTL=255
+Reply from 192.168.10.1: bytes=32 time<1ms TTL=255
+Reply from 192.168.10.1: bytes=32 time<1ms TTL=255
+Reply from 192.168.10.1: bytes=32 time<1ms TTL=255
+
+Ping statistics for 192.168.10.1:
+    Packets: Sent = 4, Received = 4, Lost = 0 (0% loss),
+Approximate round trip times in milli-seconds:
+    Minimum = 0ms, Maximum = 0ms, Average = 0ms
+
+C:\>ping 192.168.10.65
+
+Pinging 192.168.10.65 with 32 bytes of data:
+
+Reply from 192.168.10.65: bytes=32 time<1ms TTL=255
+Reply from 192.168.10.65: bytes=32 time<1ms TTL=255
+Reply from 192.168.10.65: bytes=32 time<1ms TTL=255
+Reply from 192.168.10.65: bytes=32 time<1ms TTL=255
+
+Ping statistics for 192.168.10.65:
+    Packets: Sent = 4, Received = 4, Lost = 0 (0% loss),
+Approximate round trip times in milli-seconds:
+    Minimum = 0ms, Maximum = 0ms, Average = 0ms
+
+C:\>ping 192.168.10.70
+
+Pinging 192.168.10.70 with 32 bytes of data:
+
+Request timed out.
+Reply from 192.168.10.70: bytes=32 time<1ms TTL=127
+Reply from 192.168.10.70: bytes=32 time<1ms TTL=127
+Reply from 192.168.10.70: bytes=32 time<1ms TTL=127
+
+Ping statistics for 192.168.10.70:
+    Packets: Sent = 4, Received = 3, Lost = 1 (25% loss),
+Approximate round trip times in milli-seconds:
+    Minimum = 0ms, Maximum = 0ms, Average = 0ms
+
+C:\>ipconfig /all
+
+FastEthernet0 Connection:(default port)
+
+   Connection-specific DNS Suffix..: 
+   Physical Address................: 00E0.F98E.861D
+   Link-local IPv6 Address.........: FE80::2E0:F9FF:FE8E:861D
+   IPv6 Address....................: ::
+   IPv4 Address....................: 192.168.10.10
+   Subnet Mask.....................: 255.255.255.192
+   Default Gateway.................: ::
+                                     192.168.10.1
+   DHCP Servers....................: 0.0.0.0
+   DHCPv6 IAID.....................: 
+   DHCPv6 Client DUID..............: 00-01-00-01-75-62-53-C0-00-E0-F9-8E-86-1D
+   DNS Servers.....................: ::
+                                     0.0.0.0
