@@ -1,0 +1,30 @@
+
+Router
+hostname R1
+
+
+Switch
+hostname SW1
+
+Command:
+show cdp neighbors
+
+Result:
+
+Discovered SW1
+
+Local Interface:
+G0/0
+
+Remote Interface:
+Fa0/1
+
+Command:
+show cdp neighbors detail
+
+Result:
+
+IP Address
+Platform
+Capabilities
+Successfully identified neighboring device.
