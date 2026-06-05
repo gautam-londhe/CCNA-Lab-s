@@ -1,3 +1,21 @@
+Subnet Calculation
+
+Network 1:
+
+192.168.10.0/26
+Network Address: 192.168.10.0
+First Host: 192.168.10.1
+Last Host: 192.168.10.62
+Broadcast: 192.168.10.63
+
+Network 2:
+
+192.168.10.64/26
+Network Address: 192.168.10.64
+First Host: 192.168.10.65
+Last Host: 192.168.10.126
+Broadcast: 192.168.10.127
+
 R1
 
 R1#show ip int brief
