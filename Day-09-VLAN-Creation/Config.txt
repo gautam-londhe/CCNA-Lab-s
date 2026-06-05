@@ -60,6 +60,15 @@ Bluetooth Connection:
    Subnet Mask.....................: 0.0.0.0
    Default Gateway.................: ::
                                      0.0.0.0
+show vlan brief
+
+VLAN 10
+Fa0/1
+
+VLAN 20
+Fa0/2
+
+Ping between VLANs failed as expected.
 
 Troubleshooting Challenge
 
