@@ -97,4 +97,15 @@ Bluetooth Connection:
    Default Gateway.................: ::
                                      0.0.0.0
 
-C:\>
+Command:
+
+show mac address-table
+
+Result:
+
+MAC addresses learned on:
+
+Fa0/1
+Fa0/2
+
+Ping successful between PCs.
