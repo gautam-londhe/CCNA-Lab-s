@@ -1,0 +1,49 @@
+
+Router
+lldp run
+
+
+Switch
+lldp run
+
+Router#show lldp 
+
+Global LLDP Information:
+    Status: ACTIVE
+    LLDP advertisements are sent every 30 seconds
+    LLDP hold time advertised is 120 seconds
+    LLDP interface reinitialisation delay is 2 seconds
+
+Router#show lldp neighbors 
+Capability codes:
+    (R) Router, (B) Bridge, (T) Telephone, (C) DOCSIS Cable Device
+    (W) WLAN Access Point, (P) Repeater, (S) Station, (O) Other
+Device ID           Local Intf     Hold-time  Capability      Port ID
+Switch              Gig0/0         120        B               Fa0/1
+
+Total entries displayed: 1
+
+Router#show lldp neighbors detail 
+------------------------------------------------
+Chassis id: 000C.CF48.EC01
+Port id: Fa0/1
+Port Description: FastEthernet0/1
+System Name: Switch
+System Description:
+Cisco IOS Software, C2960 Software (C2960-LANBASEK9-M), Version 15.0(2)SE4, RELEASE SOFTWARE (fc1)
+Technical Support: http://www.cisco.com/techsupport
+Copyright (c) 1986-2013 by Cisco Systems, Inc.
+Compiled Wed 26-Jun-13 02:49 by mnguyen
+Time remaining: 90 seconds
+System Capabilities: B
+Enabled Capabilities: B
+Management Addresses - not advertised
+Auto Negotiation - supported, enabled
+Physical media capabilities:
+    100baseT(FD)
+    100baseT(HD)
+    1000baseT(HD)
+Media Attachment Unit type: 10
+Vlan ID: 1
+
+Total entries displayed: 1
