@@ -1,0 +1,28 @@
+interface fa0/1
+ spanning-tree portfast
+ spanning-tree bpduguard enable
+
+Switch#show spanning-tree interface f0/1 detail 
+
+
+Port 1 (FastEthernet0/1) of VLAN0001 is designated forwarding
+  Port path cost 19, Port priority 128, Port Identifier 128.1
+  Designated root has priority 32769, address 0090.0C0B.5304
+  Designated bridge has priority 32769, address 0090.0C0B.5304
+  Designated port id is 128.1, designated path cost 19
+  Timers: message age 16, forward delay 0, hold 0
+  Number of transitions to forwarding state: 1
+  The port is in the portfast mode
+  Link type is point-to-point by default
+
+
+show spanning-tree interface fa0/1 detail
+
+PortFast Enabled
+
+show running-config interface fa0/1
+
+spanning-tree portfast
+spanning-tree bpduguard enable
+
+Verification successful.
