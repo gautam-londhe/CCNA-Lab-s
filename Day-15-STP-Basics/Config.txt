@@ -1,0 +1,16 @@
+spanning-tree vlan 1 priority 4096
+
+show spanning-tree
+
+Root Bridge:
+SW1
+
+Port Roles:
+
+Fa0/1 Root
+
+Fa0/2 Designated
+
+Fa0/3 Blocking
+
+Verification successful.
