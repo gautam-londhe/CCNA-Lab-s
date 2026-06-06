@@ -1,0 +1,9 @@
+ip route 0.0.0.0 0.0.0.0 10.0.12.2
+
+show ip route
+
+Gateway of last resort is 10.0.12.2
+
+S* 0.0.0.0/0 via 10.0.12.2
+
+Ping successful.
