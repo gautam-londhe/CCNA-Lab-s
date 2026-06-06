@@ -1,0 +1,14 @@
+spanning-tree vlan 1 priority 4096
+			OR
+spanning-tree vlan 1 root primary
+
+show spanning-tree
+
+show spanning-tree
+
+This bridge is the root
+
+Bridge Priority:
+4096
+
+Verification successful.
