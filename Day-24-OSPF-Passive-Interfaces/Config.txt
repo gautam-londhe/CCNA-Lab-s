@@ -65,3 +65,17 @@ Ping statistics for 192.168.2.10:
 Approximate round trip times in milli-seconds:
     Minimum = 0ms, Maximum = 0ms, Average = 0ms
 
+show ip protocols
+
+Passive Interface:
+GigabitEthernet0/0
+
+show ip ospf neighbor
+
+FULL
+
+show ip route
+
+Routes present
+
+Verification successful.
