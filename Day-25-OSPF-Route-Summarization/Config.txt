@@ -1,0 +1,49 @@
+R1#
+
+router ospf 1
+
+area 1 range 192.168.0.0 255.255.252.0
+
+
+show ip route
+
+O IA 192.168.0.0/22
+
+Verification successful.
+
+
+R1#show ip route ospf 
+     
+	10.0.0.0/8 is variably subnetted, 4 subnets, 2 masks
+O IA    10.0.13.0 [110/2] via 10.0.12.2, 00:10:45, GigabitEthernet0/0
+O       10.0.23.0 [110/2] via 10.0.12.2, 00:10:45, GigabitEthernet0/0
+     172.16.0.0/32 is subnetted, 2 subnets
+O       172.16.1.1 [110/3] via 10.0.12.2, 00:10:45, GigabitEthernet0/0
+O IA    172.16.2.1 [110/3] via 10.0.12.2, 00:10:45, GigabitEthernet0/0
+     192.168.0.0/24 is variably subnetted, 3 subnets, 3 masks
+O       192.168.0.0 is a summary, 00:00:00, Null0
+O    192.168.1.0 [110/2] via 10.0.12.2, 00:10:45, GigabitEthernet0/0
+O    192.168.2.0 [110/2] via 10.0.12.2, 00:10:45, GigabitEthernet0/0
+O    192.168.3.0 [110/2] via 10.0.12.2, 00:10:45, GigabitEthernet0/0
+
+R2#show ip route ospf
+     172.16.0.0/32 is subnetted, 2 subnets
+O       172.16.1.1 [110/2] via 10.0.23.2, 00:11:15, GigabitEthernet0/1
+O       172.16.2.1 [110/2] via 10.0.13.2, 00:56:48, GigabitEthernet0/2
+O    192.168.0.0 is a summary, 00:00:00, Null0R3#show ip route ospf
+     10.0.0.0/8 is variably subnetted, 4 subnets, 2 masks
+O       10.0.12.0 [110/2] via 10.0.23.1, 00:11:52, GigabitEthernet0/1
+O IA    10.0.13.0 [110/2] via 10.0.23.1, 00:59:31, GigabitEthernet0/1
+     172.16.0.0/16 is variably subnetted, 3 subnets, 2 masks
+O IA    172.16.2.1 [110/3] via 10.0.23.1, 00:57:16, GigabitEthernet0/1
+O    192.168.1.0 [110/2] via 10.0.23.1, 00:22:23, GigabitEthernet0/1
+O    192.168.2.0 [110/2] via 10.0.23.1, 00:22:13, GigabitEthernet0/1
+O    192.168.3.0 [110/2] via 10.0.23.1, 00:22:03, GigabitEthernet0/1
+
+R4#show ip route ospf
+     10.0.0.0/8 is variably subnetted, 4 subnets, 2 masks
+O IA    10.0.12.0 [110/2] via 10.0.13.1, 00:12:03, GigabitEthernet0/2
+O IA    10.0.23.0 [110/2] via 10.0.13.1, 00:12:03, GigabitEthernet0/2
+     172.16.0.0/16 is variably subnetted, 3 subnets, 2 masks
+O IA    172.16.1.1 [110/3] via 10.0.13.1, 00:12:03, GigabitEthernet0/2
+O IA 192.168.0.0 [110/2] via 10.0.13.1, 00:12:13, GigabitEthernet0/2
