@@ -1,0 +1,52 @@
+R1
+
+router ospf 1
+
+network 192.168.10.0 0.0.0.255 area 0
+
+network 10.0.0.0 0.0.0.3 area 0
+
+--------------------------------
+
+R2
+
+router ospf 1
+
+network 192.168.20.0 0.0.0.255 area 0
+
+network 10.0.0.0 0.0.0.3 area 0
+
+
+Router#show ip ospf neighbor 
+
+
+Neighbor ID     Pri   State           Dead Time   Address         Interface
+192.168.20.1      1   FULL/BDR        00:00:32    10.0.0.2        GigabitEthernet0/1
+
+FULL
+
+show ip route
+
+Router#show ip route ospf
+
+O    192.168.20.0/24 [110/2] via 10.0.0.2, 00:08:02, GigabitEthernet0/1
+
+Router#
+Ping successful.
+C:\>ping 192.168.20.10
+
+Pinging 192.168.20.10 with 32 bytes of data:
+
+Reply from 192.168.20.10: bytes=32 time<1ms TTL=126
+Reply from 192.168.20.10: bytes=32 time=15ms TTL=126
+Reply from 192.168.20.10: bytes=32 time=10ms TTL=126
+Reply from 192.168.20.10: bytes=32 time=27ms TTL=126
+
+Ping statistics for 192.168.20.10:
+    Packets: Sent = 4, Received = 4, Lost = 0 (0% loss),
+Approximate round trip times in milli-seconds:
+    Minimum = 0ms, Maximum = 27ms, Average = 13ms
+
+C:\>arp -a
+  Internet Address      Physical Address      Type
+  192.168.10.1          00e0.a36c.d801        dynamic
