@@ -1,0 +1,63 @@
+DNS Server
+Services → DNS → ON
+
+Record 1
+
+Name:
+server.company.local
+
+Address:
+192.168.1.100
+
+--------------------------------
+
+Record 2
+
+Name:
+google.com
+
+Address:
+8.8.8.8
+PC1
+IP Address:
+192.168.1.10
+
+Subnet Mask:
+255.255.255.0
+
+Default Gateway:
+192.168.1.1
+
+DNS Server:
+192.168.1.100
+
+PC1
+
+ipconfig
+
+IP Address:
+192.168.1.10
+
+DNS Server:
+192.168.1.100
+
+--------------------------------
+
+nslookup server.company.local
+
+Server:
+192.168.1.100
+
+Name:
+server.company.local
+
+Address:
+192.168.1.100
+
+--------------------------------
+
+ping server.company.local
+
+Reply from 192.168.1.100
+
+Verification Successful
