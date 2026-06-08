@@ -1,0 +1,67 @@
+R1#show ip ospf neighbor 
+
+
+Neighbor ID     Pri   State           Dead Time   Address         Interface
+192.168.2.1       1   FULL/DR         00:00:39    10.12.0.2       GigabitEthernet0/1
+R1#show ip route ospf
+O    192.168.2.0 [110/2] via 10.12.0.2, 00:01:54, GigabitEthernet0/1
+
+R1#show ip protocol
+
+Routing Protocol is "ospf 1"
+  Outgoing update filter list for all interfaces is not set 
+  Incoming update filter list for all interfaces is not set 
+  Router ID 192.168.1.1
+  Number of areas in this router is 1. 1 normal 0 stub 0 nssa
+  Maximum path: 4
+  Routing for Networks:
+    192.168.1.0 0.0.0.255 area 0
+    10.12.0.0 0.0.0.3 area 0
+  Passive Interface(s): 
+    GigabitEthernet0/0
+  Routing Information Sources:  
+    Gateway         Distance      Last Update 
+    192.168.1.1          110      00:02:19
+    192.168.2.1          110      00:02:19
+  Distance: (default is 110)
+
+R2#show ip ospf neighbor 
+
+Neighbor ID     Pri   State           Dead Time   Address         Interface
+192.168.1.1       1   FULL/BDR        00:00:37    10.12.0.1       GigabitEthernet0/1
+
+R2#show ip route ospf
+
+O    192.168.1.0 [110/2] via 10.12.0.1, 00:03:14, GigabitEthernet0/1
+
+R2#show ip protocol
+
+Routing Protocol is "ospf 1"
+  Outgoing update filter list for all interfaces is not set 
+  Incoming update filter list for all interfaces is not set 
+  Router ID 192.168.2.1
+  Number of areas in this router is 1. 1 normal 0 stub 0 nssa
+  Maximum path: 4
+  Routing for Networks:
+    192.168.2.0 0.0.0.255 area 0
+    10.12.0.0 0.0.0.3 area 0
+  Routing Information Sources:  
+    Gateway         Distance      Last Update 
+    192.168.1.1          110      00:03:28
+    192.168.2.1          110      00:03:28
+  Distance: (default is 110)
+
+C:\>ping 192.168.2.10
+
+Pinging 192.168.2.10 with 32 bytes of data:
+
+Request timed out.
+Reply from 192.168.2.10: bytes=32 time<1ms TTL=126
+Reply from 192.168.2.10: bytes=32 time<1ms TTL=126
+Reply from 192.168.2.10: bytes=32 time<1ms TTL=126
+
+Ping statistics for 192.168.2.10:
+    Packets: Sent = 4, Received = 3, Lost = 1 (25% loss),
+Approximate round trip times in milli-seconds:
+    Minimum = 0ms, Maximum = 0ms, Average = 0ms
+
