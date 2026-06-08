@@ -1,0 +1,47 @@
+PC1
+
+C:\>ipconfig /all
+
+FastEthernet0 Connection:(default port)
+
+   Connection-specific DNS Suffix..: 
+   Physical Address................: 0060.700D.9D00
+   Link-local IPv6 Address.........: FE80::260:70FF:FE0D:9D00
+   IPv6 Address....................: ::
+   IPv4 Address....................: 192.168.1.21
+   Subnet Mask.....................: 255.255.255.0
+   Default Gateway.................: ::
+                                     192.168.1.1
+   DHCP Servers....................: 192.168.1.1
+   DHCPv6 IAID.....................: 
+   DHCPv6 Client DUID..............: 00-01-00-01-EE-51-0A-13-00-60-70-0D-9D-00
+   DNS Servers.....................: ::
+                                     8.8.8.8
+
+Bluetooth Connection:
+
+   Connection-specific DNS Suffix..: 
+   Physical Address................: 0009.7CA8.5457
+   Link-local IPv6 Address.........: ::
+   IPv6 Address....................: ::
+   IPv4 Address....................: 0.0.0.0
+   Subnet Mask.....................: 0.0.0.0
+   Default Gateway.................: ::
+                                     0.0.0.0
+   DHCP Servers....................: 0.0.0.0
+   DHCPv6 IAID.....................: 
+   DHCPv6 Client DUID..............: 00-01-00-01-EE-51-0A-13-00-60-70-0D-9D-00
+   DNS Servers.....................: ::
+                                     8.8.8.8
+
+R1#show ip dhcp binding
+IP address       Client-ID/              Lease expiration        Type
+                 Hardware address
+192.168.1.21     0060.700D.9D00           --                     Automatic
+
+R1#show running-config  | section dhcp
+ip dhcp excluded-address 192.168.1.1 192.168.1.20
+ip dhcp pool Office
+ network 192.168.1.0 255.255.255.0
+ default-router 192.168.1.1
+ dns-server 8.8.8.8
