@@ -1,0 +1,63 @@
+R1#show ip ospf neighbor 
+
+Neighbor ID     Pri   State           Dead Time   Address         Interface
+10.23.0.2         1   FULL/BDR        00:00:39    10.12.0.2       GigabitEthernet0/1
+
+
+R1#show ip route
+     10.0.0.0/8 is variably subnetted, 3 subnets, 2 masks
+C       10.12.0.0/24 is directly connected, GigabitEthernet0/1
+L       10.12.0.1/32 is directly connected, GigabitEthernet0/1
+O IA    10.23.0.0/24 [110/2] via 10.12.0.2, 00:04:29, GigabitEthernet0/1
+     192.168.1.0/24 is variably subnetted, 2 subnets, 2 masks
+C       192.168.1.0/24 is directly connected, GigabitEthernet0/0
+L       192.168.1.1/32 is directly connected, GigabitEthernet0/0
+O IA 192.168.3.0/24 [110/3] via 10.12.0.2, 00:03:23, GigabitEthernet0/1
+
+R2#show ip ospf neighbor 
+
+
+Neighbor ID     Pri   State           Dead Time   Address         Interface
+192.168.1.1       1   FULL/DR         00:00:36    10.12.0.1       GigabitEthernet0/1
+192.168.3.1       1   FULL/BDR        00:00:35    10.23.0.1       GigabitEthernet0/0
+
+R2#show ip route ospf 
+O    192.168.1.0 [110/2] via 10.12.0.1, 00:06:15, GigabitEthernet0/1
+O    192.168.3.0 [110/2] via 10.23.0.1, 00:04:48, GigabitEthernet0/0
+
+R3#show ip ospf neighbor 
+
+
+Neighbor ID     Pri   State           Dead Time   Address         Interface
+10.23.0.2         1   FULL/DR         00:00:34    10.23.0.2       GigabitEthernet0/1
+
+R3#show ip route ospf 
+     10.0.0.0/8 is variably subnetted, 3 subnets, 2 masks
+O IA    10.12.0.0 [110/2] via 10.23.0.2, 00:06:12, GigabitEthernet0/1
+O IA 192.168.1.0 [110/3] via 10.23.0.2, 00:06:12, GigabitEthernet0/1
+
+C:\>ping 192.168.3.10
+
+Pinging 192.168.3.10 with 32 bytes of data:
+
+Reply from 192.168.3.10: bytes=32 time<1ms TTL=125
+Reply from 192.168.3.10: bytes=32 time=12ms TTL=125
+Reply from 192.168.3.10: bytes=32 time=11ms TTL=125
+Reply from 192.168.3.10: bytes=32 time<1ms TTL=125
+
+Ping statistics for 192.168.3.10:
+    Packets: Sent = 4, Received = 4, Lost = 0 (0% loss),
+Approximate round trip times in milli-seconds:
+    Minimum = 0ms, Maximum = 12ms, Average = 5ms
+
+
+*****
+show ip ospf neighbor
+
+FULL
+
+show ip route
+
+O IA 192.168.3.0/24
+
+Verification successful.
