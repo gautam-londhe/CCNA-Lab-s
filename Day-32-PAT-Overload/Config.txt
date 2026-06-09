@@ -1,0 +1,47 @@
+interface g0/0
+ ip address 192.168.10.1 255.255.255.0
+ ip nat inside
+ no shutdown
+
+interface g0/1
+ ip address 209.165.200.225 255.255.255.224
+ ip nat outside
+ no shutdown
+
+access-list 1 permit 192.168.10.0 0.0.0.255
+
+ip nat inside source list 1 interface g0/1 overload
+
+ip route 0.0.0.0 0.0.0.0 209.165.200.226
+
+R1#show ip nat translations 
+Pro  Inside global     Inside local       Outside local      Outside global
+icmp 209.165.200.225:32192.168.10.10:32   8.8.8.8:32         8.8.8.8:32
+icmp 209.165.200.225:33192.168.10.10:33   8.8.8.8:33         8.8.8.8:33
+icmp 209.165.200.225:34192.168.10.10:34   8.8.8.8:34         8.8.8.8:34
+icmp 209.165.200.225:35192.168.10.10:35   8.8.8.8:35         8.8.8.8:35
+
+R1#show ip nat stat
+Total translations: 0 (0 static, 0 dynamic, 0 extended)
+Outside Interfaces: GigabitEthernet0/1
+Inside Interfaces: GigabitEthernet0/0
+Hits: 17  Misses: 67
+Expired translations: 32
+Dynamic mappings:
+R1#
+R1#
+R1#show a
+R1#show acc
+R1#show access-lists 
+Standard IP access list 1
+    10 permit 192.168.10.0 0.0.0.255 (80 match(es))
+
+show ip nat translations
+
+show ip nat statistics
+
+show access-lists
+
+show ip route
+
+show ip interface brief
