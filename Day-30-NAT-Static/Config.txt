@@ -1,0 +1,60 @@
+R1#show ip nat translations 
+Pro  Inside global     Inside local       Outside local      Outside global
+---  209.165.200.227   192.168.10.100     ---                ---
+
+R1#show runn | sec ip
+ip cef
+no ipv6 cef
+ ip address 10.10.10.10 255.255.255.255
+ ip address 192.168.10.1 255.255.255.0
+ ip nat inside
+ ip address 209.165.200.225 255.255.255.252
+ ip nat outside
+ no ip address
+ no ip address
+ip nat inside source static 192.168.10.100 209.165.200.227 
+ip classless
+ip route 0.0.0.0 0.0.0.0 209.165.200.226 
+ip flow-export version 9
+
+R1#show ip nat stat
+Total translations: 1 (1 static, 0 dynamic, 0 extended)
+Outside Interfaces: GigabitEthernet0/1
+Inside Interfaces: GigabitEthernet0/0
+Hits: 0  Misses: 10
+Expired translations: 0
+Dynamic mappings:
+R1#
+
+R1#show ip int brief
+Interface              IP-Address      OK? Method Status                Protocol 
+GigabitEthernet0/0     192.168.10.1    YES manual up                    up 
+GigabitEthernet0/1     209.165.200.225 YES manual up                    up 
+GigabitEthernet0/2     unassigned      YES unset  administratively down down 
+Loopback0              10.10.10.10     YES manual up                    up 
+Vlan1                  unassigned      YES unset  administratively down down
+R1#
+
+R2#
+!
+interface GigabitEthernet0/0
+ ip address 209.165.200.226 255.255.255.252
+ duplex auto
+ speed auto
+!
+
+R2#show ip inter brief
+Interface              IP-Address      OK? Method Status                Protocol 
+GigabitEthernet0/0     209.165.200.226 YES manual up                    up 
+GigabitEthernet0/1     unassigned      YES unset  administratively down down 
+GigabitEthernet0/2     unassigned      YES unset  administratively down down 
+Vlan1                  unassigned      YES unset  administratively down down
+R2#
+
+show ip nat translations
+
+show ip nat statistics
+
+show ip interface brief
+
+show ip route
