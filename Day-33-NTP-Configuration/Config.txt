@@ -1,0 +1,46 @@
+! R2
+
+interface g0/0
+ ip address 192.168.12.2 255.255.255.252
+ no shutdown
+
+ntp master 1
+
+
+! R1
+
+interface g0/0
+ ip address 192.168.12.1 255.255.255.252
+ no shutdown
+
+ntp server 192.168.12.2
+
+
+Router(config)#do sh clock
+0:6:59.549 UTC Mon Mar 1 1993
+
+
+Router(config)#do sh ntp status
+Clock is synchronized, stratum 2, reference is 192.168.12.2
+nominal freq is 250.0000 Hz, actual freq is 249.9990 Hz, precision is 2**24
+reference time is AF1ED0EC.0000039A (0:6:4.922 UTC Mon Mar 1 1993)
+clock offset is -5.00 msec, root delay is 12.00  msec
+root dispersion is 10.23 msec, peer dispersion is 0.00 msec.
+loopfilter state is 'CTRL' (Normal Controlled Loop), drift is - 0.000001193 s/s system poll interval is 4, last update was 8 sec ago
+
+Router#show ntp associations 
+
+address         ref clock       st   when     poll    reach  delay          offset            disp
+*~192.168.12.2  127.127.1.1     1    6        16      377    13.00          -1.00             0.12
+ * sys.peer, # selected, + candidate, - outlyer, x falseticker, ~ configured
+
+
+show ntp status
+
+show ntp associations
+
+show ntp associations detail
+
+show clock
+
+show ip interface brief
