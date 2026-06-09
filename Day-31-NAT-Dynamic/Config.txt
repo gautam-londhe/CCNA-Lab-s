@@ -1,0 +1,71 @@
+interface g0/0
+ ip address 192.168.10.1 255.255.255.0
+ ip nat inside
+ no shutdown
+
+interface g0/1
+ ip address 209.165.200.225 255.255.255.224
+ ip nat outside
+ no shutdown
+
+access-list 1 permit 192.168.10.0 0.0.0.255
+
+ip nat pool PUBLIC_POOL 209.165.200.230 209.165.200.231 netmask 255.255.255.224
+
+ip nat inside source list 1 pool PUBLIC_POOL
+
+ip route 0.0.0.0 0.0.0.0 209.165.200.226
+
+Router#show ip nat translations 
+Pro  Inside global     Inside local       Outside local      Outside global
+icmp 209.165.200.231:5 192.168.10.20:5    8.8.8.8:5          8.8.8.8:5
+icmp 209.165.200.231:6 192.168.10.20:6    8.8.8.8:6          8.8.8.8:6
+icmp 209.165.200.231:7 192.168.10.20:7    8.8.8.8:7          8.8.8.8:7
+icmp 209.165.200.231:8 192.168.10.20:8    8.8.8.8:8          8.8.8.8:8
+
+R1#show ip nat stat
+Total translations: 0 (0 static, 0 dynamic, 0 extended)
+Outside Interfaces: GigabitEthernet0/1
+Inside Interfaces: GigabitEthernet0/0
+Hits: 13  Misses: 63
+Expired translations: 28
+Dynamic mappings:
+-- Inside Source
+access-list 1 pool PUBLIC_POOL refCount 0
+ pool PUBLIC_POOL: netmask 255.255.255.224
+       start 209.165.200.230 end 209.165.200.231
+       type generic, total addresses 2 , allocated 0 (0%), misses 8
+
+
+R1#show access-lists 
+Standard IP access list 1
+    10 permit 192.168.10.0 0.0.0.255 (72 match(es))
+
+R1#show ip route
+Gateway of last resort is 209.165.200.226 to network 0.0.0.0
+
+     192.168.10.0/24 is variably subnetted, 2 subnets, 2 masks
+C       192.168.10.0/24 is directly connected, GigabitEthernet0/0
+L       192.168.10.1/32 is directly connected, GigabitEthernet0/0
+     209.165.200.0/24 is variably subnetted, 2 subnets, 2 masks
+C       209.165.200.0/24 is directly connected, GigabitEthernet0/1
+L       209.165.200.225/32 is directly connected, GigabitEthernet0/1
+S*   0.0.0.0/0 [1/0] via 209.165.200.226
+
+R1#show ip interface brief 
+Interface              IP-Address      OK? Method Status                Protocol 
+GigabitEthernet0/0     192.168.10.1    YES manual up                    up 
+GigabitEthernet0/1     209.165.200.225 YES manual up                    up 
+GigabitEthernet0/2     unassigned      YES unset  administratively down down 
+Vlan1                  unassigned      YES unset  administratively down down
+R1#
+
+show ip nat translations
+
+show ip nat statistics
+
+show access-lists
+
+show ip route
+
+show ip interface brief
