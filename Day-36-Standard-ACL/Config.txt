@@ -1,0 +1,26 @@
+! R2
+
+access-list 10 deny host 192.168.10.20
+access-list 10 permit any
+
+interface g0/0
+ip access-group 10 in
+
+R2#show access-lists 
+Standard IP access list 1
+    10 deny host 192.168.10.20
+    20 permit any
+
+!
+!
+interface Loopback0
+ ip address 172.16.1.1 255.255.255.0
+!
+interface GigabitEthernet0/0
+ ip address 10.1.1.2 255.255.255.252
+ ip access-group 10 in
+ duplex auto
+ speed auto
+!
+ip route 192.168.10.0 255.255.255.0 10.1.1.1 
+!
