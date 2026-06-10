@@ -6,14 +6,10 @@ Block one host using a Standard ACL.
 
 ## Topology
 
-PC1
-PC2
- |
-SW1
- |
-R1
- |
-R2
+PC1----\
+PC2----/---SW1-----R1-----R2
+
+
 
 ## ACL
 
