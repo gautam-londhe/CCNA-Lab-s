@@ -2,22 +2,32 @@
 
 ## Objective
 
-Block traffic from employee network using a Standard ACL.
+Block one host using a Standard ACL.
 
 ## Topology
 
-PC1 --- R1 --- R2 --- Server
+PC1
+PC2
+ |
+SW1
+ |
+R1
+ |
+R2
 
 ## ACL
 
-access-list 10 deny 192.168.10.0 0.0.0.255
-access-list 10 permit any
+Deny:
+192.168.10.20
+
+Permit:
+All others
 
 ## Verification
 
 show access-lists
-show ip interface g0/1
+show ip interface g0/0
 
 ## Result
 
-Successfully blocked source network using Standard ACL.
+Successfully blocked PC2 while allowing PC1.
