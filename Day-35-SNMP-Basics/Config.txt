@@ -1,0 +1,19 @@
+interface g0/0
+ ip address 192.168.10.1 255.255.255.0
+ no shutdown
+
+snmp-server community CCNA_RO RO
+
+snmp-server contact Gautam
+
+snmp-server location Server-Room
+
+show run | include snmp
+
+show interfaces
+
+show version
+
+show ip interface brief
+
+ping 192.168.10.100
