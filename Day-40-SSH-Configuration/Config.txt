@@ -1,0 +1,71 @@
+Router_1#show ip ssh
+SSH Enabled - version 2.0
+Authentication timeout: 120 secs; Authentication retries: 3
+Router_1#
+
+Router_1#show ssh
+Connection      Version Mode Encryption		Hmac	State             Username
+0               1.99    IN   aes128-cbc      hmac-sha1     Session Started         admin
+0               1.99    OUT  aes128-cbc      hmac-sha1     Session Started         admin
+%No SSHv1 server connections running.
+Router_1#
+
+Router_1#show running-config | sec vty
+line vty 0 4
+ login local
+ transport input ssh
+line vty 5 15
+ login local
+ transport input ssh
+Router_1#
+
+Router_1#show running-config | include username
+username admin secret 5 $1$mERr$hx5rVt7rPNoS4wqbXKX7m0
+Router_1#
+
+Router_1#show crypto key mypubkey rsa
+% Key pair was generated at: 0:3:22 UTC March 1 1993
+Key name: R1.example.com
+ Storage Device: not specified
+ Usage: General Purpose Key
+ Key is not exportable.
+ Key Data:
+ 00001468  00005b2a  00002ca3  00001027  00004242  000028b1  00000710  00005f1e
+ 000044e4  00003375  00000b06  000051b7  00002fe8  00006f37  00001192  00007fda
+ 00001268  00006a3b  00007d3b  00005a02  000012c1  000009f9  000053e6  6b94
+% Key pair was generated at: 0:3:22 UTC March 1 1993
+Key name: R1.example.com.server
+Temporary key
+ Usage: Encryption Key
+ Key is not exportable.
+ Key Data:
+ 00007797  00000015  00002ff7  00001770  0000421a  00000b91  00004cb9  000002c5
+ 00003d87  00005a42  00003200  00002229  000027f1  00001e80  0000430d  00001ce9
+ 00005841  00002d22  000034b1  00007a9d  0000057c  000037aa  00002eb6  4f00
+Router_1#
+
+
+hostname R1
+
+ip domain-name example.com
+
+username admin secret Cisco
+
+crypto key generate rsa
+
+ip ssh version 2
+
+line vty 0 4
+ login local
+ transport input ssh
+
+
+show ip ssh
+
+show ssh
+
+show running-config | section vty
+
+show running-config | include username
+
+show crypto key mypubkey rsa
