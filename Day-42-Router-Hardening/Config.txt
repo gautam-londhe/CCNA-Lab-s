@@ -1,0 +1,41 @@
+hostname R1
+
+enable secret Cisco123
+
+service password-encryption
+
+banner motd # Authorized Users Only #
+
+username admin privilege 15 secret Admin123
+
+ip domain-name lab.local
+
+crypto key generate rsa
+
+ip ssh version 2
+
+line console 0
+ login local
+ exec-timeout 5 0
+ logging synchronous
+
+line vty 0 4
+ login local
+ transport input ssh
+ exec-timeout 5 0
+
+login block-for 120 attempts 3 within 60
+
+interface g0/1
+ shutdown
+ description UNUSED_INTERFACE
+
+show ip ssh
+
+show login
+
+show running-config | section vty
+
+show running-config | include username
+
+show ip interface brief
