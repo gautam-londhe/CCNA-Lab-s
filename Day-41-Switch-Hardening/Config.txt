@@ -1,0 +1,165 @@
+hostname SW1
+
+enable secret Cisco123
+
+service password-encryption
+
+banner motd # Unauthorized access prohibited #
+
+vlan 99
+ name MANAGEMENT
+
+interface vlan 99
+ ip address 192.168.99.2 255.255.255.0
+ no shutdown
+
+ip default-gateway 192.168.99.1
+
+ip domain-name example.com
+
+username admin secret Cisco
+
+crypto key generate rsa
+
+ip ssh version 2
+
+line vty 0 4
+ login local
+ transport input ssh
+
+interface fa0/1
+ switchport mode access
+ switchport nonegotiate
+
+interface range fa0/2-24
+ shutdown
+ description UNUSED_PORT
+
+show ip ssh
+
+SW1#show ip ssh
+SSH Enabled - version 2.0
+Authentication timeout: 120 secs; Authentication retries: 3
+SW1#
+
+show vlan brief
+
+SW1#show vlan brief
+
+VLAN Name                             Status    Ports
+---- -------------------------------- --------- -------------------------------
+1    default                          active    Fa0/1, Fa0/2, Fa0/3, Fa0/4
+                                                Fa0/5, Fa0/6, Fa0/7, Fa0/8
+                                                Fa0/9, Fa0/10, Fa0/11, Fa0/12
+                                                Fa0/13, Fa0/14, Fa0/15, Fa0/16
+                                                Fa0/17, Fa0/18, Fa0/19, Fa0/20
+                                                Fa0/21, Fa0/22, Fa0/23, Fa0/24
+                                                Gig0/1, Gig0/2
+99   MANAGEMENT                       active    
+1002 fddi-default                     active    
+1003 token-ring-default               active    
+1004 fddinet-default                  active    
+1005 trnet-default                    active    
+SW1#
+
+show ip interface brief
+
+SW1#show ip interface brief
+Interface              IP-Address      OK? Method Status                Protocol 
+FastEthernet0/1        unassigned      YES manual up                    up 
+FastEthernet0/2        unassigned      YES manual administratively down down 
+FastEthernet0/3        unassigned      YES manual administratively down down 
+FastEthernet0/4        unassigned      YES manual administratively down down 
+FastEthernet0/5        unassigned      YES manual administratively down down 
+FastEthernet0/6        unassigned      YES manual administratively down down 
+FastEthernet0/7        unassigned      YES manual administratively down down 
+FastEthernet0/8        unassigned      YES manual administratively down down 
+FastEthernet0/9        unassigned      YES manual administratively down down 
+FastEthernet0/10       unassigned      YES manual administratively down down 
+FastEthernet0/11       unassigned      YES manual administratively down down 
+FastEthernet0/12       unassigned      YES manual administratively down down 
+FastEthernet0/13       unassigned      YES manual administratively down down 
+FastEthernet0/14       unassigned      YES manual administratively down down 
+FastEthernet0/15       unassigned      YES manual administratively down down 
+FastEthernet0/16       unassigned      YES manual administratively down down 
+FastEthernet0/17       unassigned      YES manual administratively down down 
+FastEthernet0/18       unassigned      YES manual administratively down down 
+FastEthernet0/19       unassigned      YES manual administratively down down 
+FastEthernet0/20       unassigned      YES manual administratively down down 
+FastEthernet0/21       unassigned      YES manual administratively down down 
+FastEthernet0/22       unassigned      YES manual administratively down down 
+FastEthernet0/23       unassigned      YES manual administratively down down 
+FastEthernet0/24       unassigned      YES manual administratively down down 
+GigabitEthernet0/1     unassigned      YES manual down                  down 
+GigabitEthernet0/2     unassigned      YES manual down                  down 
+Vlan1                  unassigned      YES manual administratively down down 
+Vlan99                 192.168.99.2    YES manual up                    down
+
+show interfaces status
+
+SW1#show interfaces status 
+Port      Name               Status       Vlan       Duplex  Speed Type
+Fa0/1                        connected    1          a-full  a-100 10/100BaseTX
+Fa0/2     UNUSED_PORTS       disabled 1          auto    auto  10/100BaseTX
+Fa0/3     UNUSED_PORTS       disabled 1          auto    auto  10/100BaseTX
+Fa0/4     UNUSED_PORTS       disabled 1          auto    auto  10/100BaseTX
+Fa0/5     UNUSED_PORTS       disabled 1          auto    auto  10/100BaseTX
+Fa0/6     UNUSED_PORTS       disabled 1          auto    auto  10/100BaseTX
+Fa0/7     UNUSED_PORTS       disabled 1          auto    auto  10/100BaseTX
+Fa0/8     UNUSED_PORTS       disabled 1          auto    auto  10/100BaseTX
+Fa0/9     UNUSED_PORTS       disabled 1          auto    auto  10/100BaseTX
+Fa0/10    UNUSED_PORTS       disabled 1          auto    auto  10/100BaseTX
+Fa0/11    UNUSED_PORTS       disabled 1          auto    auto  10/100BaseTX
+Fa0/12    UNUSED_PORTS       disabled 1          auto    auto  10/100BaseTX
+Fa0/13    UNUSED_PORTS       disabled 1          auto    auto  10/100BaseTX
+Fa0/14    UNUSED_PORTS       disabled 1          auto    auto  10/100BaseTX
+Fa0/15    UNUSED_PORTS       disabled 1          auto    auto  10/100BaseTX
+Fa0/16    UNUSED_PORTS       disabled 1          auto    auto  10/100BaseTX
+Fa0/17    UNUSED_PORTS       disabled 1          auto    auto  10/100BaseTX
+Fa0/18    UNUSED_PORTS       disabled 1          auto    auto  10/100BaseTX
+Fa0/19    UNUSED_PORTS       disabled 1          auto    auto  10/100BaseTX
+Fa0/20    UNUSED_PORTS       disabled 1          auto    auto  10/100BaseTX
+Fa0/21    UNUSED_PORTS       disabled 1          auto    auto  10/100BaseTX
+Fa0/22    UNUSED_PORTS       disabled 1          auto    auto  10/100BaseTX
+Fa0/23    UNUSED_PORTS       disabled 1          auto    auto  10/100BaseTX
+Fa0/24    UNUSED_PORTS       disabled 1          auto    auto  10/100BaseTX
+Gig0/1                       notconnect   1          auto    auto  10/100/1000BaseTX
+Gig0/2                       notconnect   1          auto    auto  10/100/1000BaseTX
+
+show running-config
+
+!
+interface Vlan99
+ ip address 192.168.99.2 255.255.255.0
+!
+ip default-gateway 192.168.99.1
+!
+banner motd ^Cunauthorized access prohibited ^C
+!
+!
+!
+line con 0
+!
+line vty 0 4
+ login local
+ transport input ssh
+line vty 5 15
+ login
+!
+!
+!
+interface FastEthernet0/1
+ switchport mode access
+ switchport nonegotiate
+!
+hostname SW1
+!
+enable secret 5 $1$mERr$hx5rVt7rPNoS4wqbXKX7m0
+!
+!
+!
+ip ssh version 2
+ip domain-name example.com
+!
+username admin secret 5 $1$mERr$hx5rVt7rPNoS4wqbXKX7m0
+!
