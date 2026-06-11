@@ -1,0 +1,20 @@
+ip sla 1
+ icmp-echo 8.8.8.8 source-interface g0/0
+
+ip sla schedule 1 life forever start-time now
+
+track 1 ip sla 1 reachability
+
+ip route 8.8.8.8 255.255.255.255 10.1.12.2 track 1
+
+ip route 8.8.8.8 255.255.255.255 10.1.13.2 200
+
+show track
+
+show ip sla statistics
+
+show ip route
+
+show running-config | section track
+
+show ip interface brief
