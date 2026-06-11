@@ -1,0 +1,84 @@
+spanning-tree vlan 10 root primary
+
+interface fa0/1
+ spanning-tree portfast
+
+
+show spanning-tree
+
+Switch#show spanning-tree 
+VLAN0001
+  Spanning tree enabled protocol ieee
+  Root ID    Priority    32769
+             Address     0001.963D.7D9B
+             This bridge is the root
+             Hello Time  2 sec  Max Age 20 sec  Forward Delay 15 sec
+
+  Bridge ID  Priority    32769  (priority 32768 sys-id-ext 1)
+             Address     0001.963D.7D9B
+             Hello Time  2 sec  Max Age 20 sec  Forward Delay 15 sec
+             Aging Time  20
+
+Interface        Role Sts Cost      Prio.Nbr Type
+---------------- ---- --- --------- -------- --------------------------------
+Fa0/23           Desg FWD 19        128.23   P2p
+Fa0/24           Desg FWD 19        128.24   P2p
+
+Switch#
+
+show spanning-tree vlan 10
+
+show spanning-tree root
+
+show spanning-tree summary
+
+Switch#show spanning-tree summary 
+Switch is in pvst mode
+Root bridge for: default
+Extended system ID           is enabled
+Portfast Default             is disabled
+PortFast BPDU Guard Default  is disabled
+Portfast BPDU Filter Default is disabled
+Loopguard Default            is disabled
+EtherChannel misconfig guard is disabled
+UplinkFast                   is disabled
+BackboneFast                 is disabled
+Configured Pathcost method used is short
+
+Name                   Blocking Listening Learning Forwarding STP Active
+---------------------- -------- --------- -------- ---------- ----------
+VLAN0001                     0         0        0          2          2
+
+---------------------- -------- --------- -------- ---------- ----------
+1 vlans                      0         0        0          2          2
+
+show interfaces status
+
+Switch#show interfaces status 
+Port      Name               Status       Vlan       Duplex  Speed Type
+Fa0/1                        notconnect   1          auto    auto  10/100BaseTX
+Fa0/2                        notconnect   1          auto    auto  10/100BaseTX
+Fa0/3                        notconnect   1          auto    auto  10/100BaseTX
+Fa0/4                        notconnect   1          auto    auto  10/100BaseTX
+Fa0/5                        notconnect   1          auto    auto  10/100BaseTX
+Fa0/6                        notconnect   1          auto    auto  10/100BaseTX
+Fa0/7                        notconnect   1          auto    auto  10/100BaseTX
+Fa0/8                        notconnect   1          auto    auto  10/100BaseTX
+Fa0/9                        notconnect   1          auto    auto  10/100BaseTX
+Fa0/10                       notconnect   1          auto    auto  10/100BaseTX
+Fa0/11                       notconnect   1          auto    auto  10/100BaseTX
+Fa0/12                       notconnect   1          auto    auto  10/100BaseTX
+Fa0/13                       notconnect   1          auto    auto  10/100BaseTX
+Fa0/14                       notconnect   1          auto    auto  10/100BaseTX
+Fa0/15                       notconnect   1          auto    auto  10/100BaseTX
+Fa0/16                       notconnect   1          auto    auto  10/100BaseTX
+Fa0/17                       notconnect   1          auto    auto  10/100BaseTX
+Fa0/18                       notconnect   1          auto    auto  10/100BaseTX
+Fa0/19                       notconnect   1          auto    auto  10/100BaseTX
+Fa0/20                       notconnect   1          auto    auto  10/100BaseTX
+Fa0/21                       notconnect   1          auto    auto  10/100BaseTX
+Fa0/22                       notconnect   1          auto    auto  10/100BaseTX
+Fa0/23                       connected    trunk      a-full  a-100 10/100BaseTX
+Fa0/24                       connected    trunk      a-full  a-100 10/100BaseTX
+Gig0/1                       notconnect   1          auto    auto  10/100/1000BaseTX
+Gig0/2                       notconnect   1          auto    auto  10/100/1000BaseTX
