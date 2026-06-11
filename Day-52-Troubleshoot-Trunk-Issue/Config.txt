@@ -1,0 +1,103 @@
+interface fa0/24
+ switchport mode trunk
+
+C:\>ping 192.168.10.20
+
+Pinging 192.168.10.20 with 32 bytes of data:
+
+Reply from 192.168.10.20: bytes=32 time<1ms TTL=128
+Reply from 192.168.10.20: bytes=32 time<1ms TTL=128
+Reply from 192.168.10.20: bytes=32 time<1ms TTL=128
+Reply from 192.168.10.20: bytes=32 time<1ms TTL=128
+
+Ping statistics for 192.168.10.20:
+    Packets: Sent = 4, Received = 4, Lost = 0 (0% loss),
+Approximate round trip times in milli-seconds:
+    Minimum = 0ms, Maximum = 0ms, Average = 0ms
+
+
+show interfaces trunk
+
+Switch#show interfaces trunk 
+Port        Mode         Encapsulation  Status        Native vlan
+Fa0/24      on           802.1q         trunking      1
+
+Port        Vlans allowed on trunk
+Fa0/24      1-1005
+
+Port        Vlans allowed and active in management domain
+Fa0/24      1,10
+
+Port        Vlans in spanning tree forwarding state and not pruned
+Fa0/24      1,10
+
+
+show vlan brief
+
+Switch#show vlan br
+
+VLAN Name                             Status    Ports
+---- -------------------------------- --------- -------------------------------
+1    default                          active    Fa0/2, Fa0/3, Fa0/4, Fa0/5
+                                                Fa0/6, Fa0/7, Fa0/8, Fa0/9
+                                                Fa0/10, Fa0/11, Fa0/12, Fa0/13
+                                                Fa0/14, Fa0/15, Fa0/16, Fa0/17
+                                                Fa0/18, Fa0/19, Fa0/20, Fa0/21
+                                                Fa0/22, Fa0/23, Gig0/1, Gig0/2
+10   Hr                               active    Fa0/1
+1002 fddi-default                     active    
+1003 token-ring-default               active    
+1004 fddinet-default                  active    
+1005 trnet-default                    active   
+
+
+show interfaces status
+
+Switch#show interfaces status 
+Port      Name               Status       Vlan       Duplex  Speed Type
+Fa0/1                        connected    10         a-full  a-100 10/100BaseTX
+Fa0/2                        notconnect   1          auto    auto  10/100BaseTX
+Fa0/3                        notconnect   1          auto    auto  10/100BaseTX
+Fa0/4                        notconnect   1          auto    auto  10/100BaseTX
+Fa0/5                        notconnect   1          auto    auto  10/100BaseTX
+Fa0/6                        notconnect   1          auto    auto  10/100BaseTX
+Fa0/7                        notconnect   1          auto    auto  10/100BaseTX
+Fa0/8                        notconnect   1          auto    auto  10/100BaseTX
+Fa0/9                        notconnect   1          auto    auto  10/100BaseTX
+Fa0/10                       notconnect   1          auto    auto  10/100BaseTX
+Fa0/11                       notconnect   1          auto    auto  10/100BaseTX
+Fa0/12                       notconnect   1          auto    auto  10/100BaseTX
+Fa0/13                       notconnect   1          auto    auto  10/100BaseTX
+Fa0/14                       notconnect   1          auto    auto  10/100BaseTX
+Fa0/15                       notconnect   1          auto    auto  10/100BaseTX
+Fa0/16                       notconnect   1          auto    auto  10/100BaseTX
+Fa0/17                       notconnect   1          auto    auto  10/100BaseTX
+Fa0/18                       notconnect   1          auto    auto  10/100BaseTX
+Fa0/19                       notconnect   1          auto    auto  10/100BaseTX
+Fa0/20                       notconnect   1          auto    auto  10/100BaseTX
+Fa0/21                       notconnect   1          auto    auto  10/100BaseTX
+Fa0/22                       notconnect   1          auto    auto  10/100BaseTX
+Fa0/23                       notconnect   1          auto    auto  10/100BaseTX
+Fa0/24                       connected    trunk      a-full  a-100 10/100BaseTX
+Gig0/1                       notconnect   1          auto    auto  10/100/1000BaseTX
+Gig0/2                       notconnect   1          auto    auto  10/100/1000BaseTX
+
+show spanning-tree vlan 10
+
+Switch#show spanning-tree vlan 10
+VLAN0010
+  Spanning tree enabled protocol ieee
+  Root ID    Priority    32778
+             Address     0001.431A.3489
+             This bridge is the root
+             Hello Time  2 sec  Max Age 20 sec  Forward Delay 15 sec
+
+  Bridge ID  Priority    32778  (priority 32768 sys-id-ext 10)
+             Address     0001.431A.3489
+             Hello Time  2 sec  Max Age 20 sec  Forward Delay 15 sec
+             Aging Time  20
+
+Interface        Role Sts Cost      Prio.Nbr Type
+---------------- ---- --- --------- -------- --------------------------------
+Fa0/24           Desg FWD 19        128.24   P2p
+Fa0/1            Desg FWD 19        128.1    P2p
