@@ -1,0 +1,17 @@
+ip sla 1
+
+ icmp-echo 8.8.8.8
+
+ip sla schedule 1 life forever start-time now
+
+
+
+show ip sla statistics
+
+show ip sla configuration
+
+show ip route
+
+show ip interface brief
+
+ping 8.8.8.8
