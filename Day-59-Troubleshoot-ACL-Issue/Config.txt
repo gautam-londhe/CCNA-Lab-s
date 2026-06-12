@@ -1,0 +1,133 @@
+access-list 10 permit 192.168.1.0 0.0.0.255
+
+interface g0/0
+ ip access-group 10 in
+
+show access-lists
+
+Router#show access-lists 
+Standard IP access list 10
+    10 permit 192.168.1.0 0.0.0.255 (4 match(es))
+    20 deny 192.168.1.0 0.0.0.255
+
+Router#
+
+show run interface g0/0
+
+show run interface g0/1
+
+show ip interface
+
+Router#show ip interface 
+GigabitEthernet0/0 is up, line protocol is up (connected)
+  Internet address is 192.168.1.1/24
+  Broadcast address is 255.255.255.255
+  Address determined by setup command
+  MTU is 1500 bytes
+  Helper address is not set
+  Directed broadcast forwarding is disabled
+  Outgoing access list is not set
+  Inbound  access list is 10
+  Proxy ARP is enabled
+  Security level is default
+  Split horizon is enabled
+  ICMP redirects are always sent
+  ICMP unreachables are always sent
+  ICMP mask replies are never sent
+  IP fast switching is disabled
+  IP fast switching on the same interface is disabled
+  IP Flow switching is disabled
+  IP Fast switching turbo vector
+  IP multicast fast switching is disabled
+  IP multicast distributed fast switching is disabled
+  Router Discovery is disabled
+  IP output packet accounting is disabled
+  IP access violation accounting is disabled
+  TCP/IP header compression is disabled
+  RTP/IP header compression is disabled
+  Probe proxy name replies are disabled
+  Policy routing is disabled
+  Network address translation is disabled
+  BGP Policy Mapping is disabled
+  Input features: MCI Check
+  WCCP Redirect outbound is disabled
+  WCCP Redirect inbound is disabled
+  WCCP Redirect exclude is disabled
+GigabitEthernet0/1 is up, line protocol is up (connected)
+  Internet address is 10.1.12.1/30
+  Broadcast address is 255.255.255.255
+  Address determined by setup command
+  MTU is 1500 bytes
+  Helper address is not set
+  Directed broadcast forwarding is disabled
+  Outgoing access list is not set
+  Inbound  access list is not set
+  Proxy ARP is enabled
+  Security level is default
+  Split horizon is enabled
+  ICMP redirects are always sent
+  ICMP unreachables are always sent
+  ICMP mask replies are never sent
+  IP fast switching is disabled
+  IP fast switching on the same interface is disabled
+  IP Flow switching is disabled
+  IP Fast switching turbo vector
+  IP multicast fast switching is disabled
+  IP multicast distributed fast switching is disabled
+  Router Discovery is disabled
+  IP output packet accounting is disabled
+  IP access violation accounting is disabled
+  TCP/IP header compression is disabled
+  RTP/IP header compression is disabled
+  Probe proxy name replies are disabled
+  Policy routing is disabled
+  Network address translation is disabled
+  BGP Policy Mapping is disabled
+  Input features: MCI Check
+  WCCP Redirect outbound is disabled
+  WCCP Redirect inbound is disabled
+  WCCP Redirect exclude is disabled
+GigabitEthernet0/2 is administratively down, line protocol is down (disabled)
+  Internet protocol processing disabled
+Vlan1 is administratively down, line protocol is down
+  Internet protocol processing disabled
+
+
+show ip interface brief
+
+Router#show ip interface brief
+Interface              IP-Address      OK? Method Status                Protocol 
+GigabitEthernet0/0     192.168.1.1     YES manual up                    up 
+GigabitEthernet0/1     10.1.12.1       YES manual up                    up 
+GigabitEthernet0/2     unassigned      YES unset  administratively down down 
+Vlan1                  unassigned      YES unset  administratively down down
+
+
+C:\>ping 1.1.1.1
+
+Pinging 1.1.1.1 with 32 bytes of data:
+
+Reply from 1.1.1.1: bytes=32 time<1ms TTL=254
+Reply from 1.1.1.1: bytes=32 time=1ms TTL=254
+Reply from 1.1.1.1: bytes=32 time<1ms TTL=254
+Reply from 1.1.1.1: bytes=32 time<1ms TTL=254
+
+Ping statistics for 1.1.1.1:
+    Packets: Sent = 4, Received = 4, Lost = 0 (0% loss),
+Approximate round trip times in milli-seconds:
+    Minimum = 0ms, Maximum = 1ms, Average = 0ms
+
+
+C:\>ping 10.1.12.2
+
+Pinging 10.1.12.2 with 32 bytes of data:
+
+Reply from 10.1.12.2: bytes=32 time<1ms TTL=254
+Reply from 10.1.12.2: bytes=32 time=11ms TTL=254
+Reply from 10.1.12.2: bytes=32 time=11ms TTL=254
+Reply from 10.1.12.2: bytes=32 time=11ms TTL=254
+
+Ping statistics for 10.1.12.2:
+    Packets: Sent = 3, Received = 3, Lost = 0 (0% loss),
+Approximate round trip times in milli-seconds:
+    Minimum = 0ms, Maximum = 11ms, Average = 7m
