@@ -1,0 +1,59 @@
+access-list 1 permit 192.168.1.0 0.0.0.255
+
+interface g0/0
+ ip nat inside
+
+interface g0/1
+ ip nat outside
+
+ip nat inside source list 1 interface g0/1 overload
+
+ip route 0.0.0.0 0.0.0.0 10.1.12.2
+
+
+
+show ip nat translations
+
+Router#show ip nat translations 
+Pro  Inside global     Inside local       Outside local      Outside global
+icmp 10.1.12.1:10      192.168.1.10:10    1.1.1.1:10         1.1.1.1:10
+icmp 10.1.12.1:11      192.168.1.10:11    1.1.1.1:11         1.1.1.1:11
+icmp 10.1.12.1:12      192.168.1.10:12    1.1.1.1:12         1.1.1.1:12
+icmp 10.1.12.1:13      192.168.1.10:13    1.1.1.1:13         1.1.1.1:13
+icmp 10.1.12.1:6       192.168.1.10:6     10.1.12.2:6        10.1.12.2:6
+icmp 10.1.12.1:7       192.168.1.10:7     10.1.12.2:7        10.1.12.2:7
+icmp 10.1.12.1:8       192.168.1.10:8     10.1.12.2:8        10.1.12.2:8
+icmp 10.1.12.1:9       192.168.1.10:9     10.1.12.2:9        10.1.12.2:9
+
+show ip nat statistics
+
+Router#show ip nat statistics 
+Total translations: 0 (0 static, 0 dynamic, 0 extended)
+Outside Interfaces: GigabitEthernet0/1
+Inside Interfaces: GigabitEthernet0/0
+Hits: 8  Misses: 9
+Expired translations: 9
+Dynamic mappings:
+
+show access-lists
+
+Router#show access-lists 
+Standard IP access list 1
+    10 permit 192.168.1.0 0.0.0.255 (18 match(es))
+
+
+show ip route static 
+
+Router#show ip route static 
+S*   0.0.0.0/0 [1/0] via 10.1.12.2
+
+
+show ip interface brief
+
+Router#show ip interface brief 
+Interface              IP-Address      OK? Method Status                Protocol 
+GigabitEthernet0/0     192.168.1.1     YES manual up                    up 
+GigabitEthernet0/1     10.1.12.1       YES manual up                    up 
+GigabitEthernet0/2     unassigned      YES unset  administratively down down 
+Vlan1                  unassigned      YES unset  administratively down down
+Router#
