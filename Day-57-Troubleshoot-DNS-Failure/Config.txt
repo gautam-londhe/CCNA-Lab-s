@@ -1,0 +1,76 @@
+# Day 57 - Troubleshoot DNS Failure
+
+## Objective
+
+Identify and resolve DNS-related issues.
+
+## Root Causes
+
+- Wrong DNS Server
+- DNS Service Disabled
+- Missing DNS Records
+- Wrong DNS Records
+- Routing Problems
+
+## Tools
+
+ipconfig
+ping
+nslookup
+
+## Result
+
+Successfully restored DNS resolution.
+
+
+ipconfig
+
+C:\>ipconfig
+
+FastEthernet0 Connection:(default port)
+
+   Connection-specific DNS Suffix..: 
+   Link-local IPv6 Address.........: FE80::20C:CFFF:FE7C:C3A7
+   IPv6 Address....................: ::
+   IPv4 Address....................: 192.168.10.10
+   Subnet Mask.....................: 255.255.255.0
+   Default Gateway.................: ::
+                                     192.168.10.1
+
+Bluetooth Connection:
+
+   Connection-specific DNS Suffix..: 
+   Link-local IPv6 Address.........: ::
+   IPv6 Address....................: ::
+   IPv4 Address....................: 0.0.0.0
+   Subnet Mask.....................: 0.0.0.0
+   Default Gateway.................: ::
+                                     0.0.0.0
+
+
+ping 192.168.20.10
+
+C:\>ping 192.168.20.10
+
+Pinging 192.168.20.10 with 32 bytes of data:
+
+Reply from 192.168.20.10: bytes=32 time<1ms TTL=127
+Reply from 192.168.20.10: bytes=32 time=11ms TTL=127
+Reply from 192.168.20.10: bytes=32 time<1ms TTL=127
+Reply from 192.168.20.10: bytes=32 time=1ms TTL=127
+
+Ping statistics for 192.168.20.10:
+    Packets: Sent = 4, Received = 4, Lost = 0 (0% loss),
+Approximate round trip times in milli-seconds:
+    Minimum = 0ms, Maximum = 11ms, Average = 3ms
+
+nslookup google.com
+
+C:\>nslookup google.com
+
+Server: [192.168.20.10]
+Address:  192.168.20.10
+
+Non-authoritative answer:
+Name:   google.com
+Address:   8.8.8.8
