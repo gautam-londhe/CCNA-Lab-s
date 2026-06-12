@@ -1,0 +1,53 @@
+ip route 192.168.20.0 255.255.255.0 10.1.12.2
+
+ip route 192.168.10.0 255.255.255.0 10.1.12.1
+
+show ip route
+
+R2#show ip route static 
+S    192.168.20.0/24 [1/0] via 10.1.12.2
+
+R2#
+
+show ip interface brief
+
+R2#show ip interface brief 
+Interface              IP-Address      OK? Method Status                Protocol 
+GigabitEthernet0/0/0   192.168.10.1    YES manual up                    up 
+GigabitEthernet0/0/1   10.1.12.1       YES manual up                    up 
+GigabitEthernet0/0/2   unassigned      YES unset  administratively down down 
+Vlan1                  unassigned      YES unset  administratively down down
+R2#
+
+show running-config | include ip route
+
+R2#show running-config | include ip route
+ip route 192.168.20.0 255.255.255.0 10.1.12.2 
+R2#
+
+ping 10.1.12.2
+
+C:\>ping 10.1.12.2
+
+Pinging 10.1.12.2 with 32 bytes of data:
+
+Reply from 10.1.12.2: bytes=32 time=11ms TTL=254
+Reply from 10.1.12.2: bytes=32 time<1ms TTL=254
+Reply from 10.1.12.2: bytes=32 time<1ms TTL=254
+Reply from 10.1.12.2: bytes=32 time<1ms TTL=254
+
+Ping statistics for 10.1.12.2:
+    Packets: Sent = 4, Received = 4, Lost = 0 (0% loss),
+Approximate round trip times in milli-seconds:
+    Minimum = 0ms, Maximum = 11ms, Average = 2ms
+
+C:\>
+
+traceroute 192.168.20.10
+
+R2#traceroute 192.168.20.10
+Type escape sequence to abort.
+Tracing the route to 192.168.20.10
+
+  1   10.1.12.2       0 msec    0 msec    0 msec    
+  2   192.168.20.10   0 msec    0 msec    3 msec 
