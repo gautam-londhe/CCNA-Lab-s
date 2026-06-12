@@ -1,0 +1,80 @@
+router ospf 1
+
+network 192.168.10.0 0.0.0.255 area 0
+
+network 10.1.12.0 0.0.0.3 area 0
+
+
+show ip ospf neighbor
+
+R1#show ip ospf neighbor 
+
+
+Neighbor ID     Pri   State           Dead Time   Address         Interface
+192.168.20.1      1   FULL/BDR        00:00:32    10.1.12.2       GigabitEthernet0/0/1
+
+show ip ospf interface
+
+R1#show ip ospf interface 
+
+GigabitEthernet0/0/0 is up, line protocol is up
+  Internet address is 192.168.10.1/24, Area 0
+  Process ID 1, Router ID 192.168.10.1, Network Type BROADCAST, Cost: 1
+  Transmit Delay is 1 sec, State DR, Priority 1
+  Designated Router (ID) 192.168.10.1, Interface address 192.168.10.1
+  No backup designated router on this network
+  Timer intervals configured, Hello 10, Dead 40, Wait 40, Retransmit 5
+    Hello due in 00:00:06
+  Index 1/1, flood queue length 0
+  Next 0x0(0)/0x0(0)
+  Last flood scan length is 1, maximum is 1
+  Last flood scan time is 0 msec, maximum is 0 msec
+  Neighbor Count is 0, Adjacent neighbor count is 0
+  Suppress hello for 0 neighbor(s)
+GigabitEthernet0/0/1 is up, line protocol is up
+  Internet address is 10.1.12.1/30, Area 0
+  Process ID 1, Router ID 192.168.10.1, Network Type BROADCAST, Cost: 1
+  Transmit Delay is 1 sec, State DR, Priority 1
+  Designated Router (ID) 192.168.10.1, Interface address 10.1.12.1
+  Backup Designated Router (ID) 192.168.20.1, Interface address 10.1.12.2
+  Timer intervals configured, Hello 10, Dead 40, Wait 40, Retransmit 5
+    Hello due in 00:00:06
+  Index 2/2, flood queue length 0
+  Next 0x0(0)/0x0(0)
+  Last flood scan length is 1, maximum is 1
+  Last flood scan time is 0 msec, maximum is 0 msec
+  Neighbor Count is 1, Adjacent neighbor count is 1
+    Adjacent with neighbor 192.168.20.1  (Backup Designated Router)
+  Suppress hello for 0 neighbor(s)
+
+show ip route ospf
+
+R1#show ip route ospf 
+O    192.168.20.0 [110/2] via 10.1.12.2, 00:03:08, GigabitEthernet0/0/1
+
+show ip protocols
+
+R1#show ip protocols 
+
+Routing Protocol is "ospf 1"
+  Outgoing update filter list for all interfaces is not set 
+  Incoming update filter list for all interfaces is not set 
+  Router ID 192.168.10.1
+  Number of areas in this router is 1. 1 normal 0 stub 0 nssa
+  Maximum path: 4
+  Routing for Networks:
+    192.168.10.0 0.0.0.255 area 0
+    10.1.12.0 0.0.0.3 area 0
+  Routing Information Sources:  
+    Gateway         Distance      Last Update 
+    192.168.10.1         110      00:03:33
+    192.168.20.1         110      00:03:20
+  Distance: (default is 110)
+
+show running-config | section router ospf
+
+R1#show running-config | section router ospf
+router ospf 1
+ log-adjacency-changes
+ network 192.168.10.0 0.0.0.255 area 0
+ network 10.1.12.0 0.0.0.3 area 0
